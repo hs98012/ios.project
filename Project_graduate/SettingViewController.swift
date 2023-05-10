@@ -12,11 +12,17 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("settingVC called")
-
+        self.navigationController?.navigationBar.isHidden = false
+        print(self.navigationController?.viewControllers)
+    }
+    
+    @IBAction func returnToBookMark(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     // 히스토리 전체 삭제 버튼
     @IBAction func initHistory(_ sender: Any) {
+        print("initHistory clicked")
         ImageDataManager.shared.removeAllImageUrls()
         ImageDataManager.shared.removeAllTitles()
     }
@@ -28,8 +34,9 @@ class SettingViewController: UIViewController {
         let bookmarkArray = BookMarkData.shared.bookmarkArray
         
         for key in bookmarkArray {
-            BookMarkData.shared.removeBookmark(withKey: key)
+//            BookMarkData.shared.removeBookmark(withKey: key)
             UserDefaults.standard.removeObject(forKey: key)
         }
+        UserDefaults.standard.removeObject(forKey: "bookmarkArray")
     }
 }

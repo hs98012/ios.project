@@ -113,7 +113,7 @@
         <!--Bookmark View Controller-->
         <scene sceneID="A9n-X1-SnD">
             <objects>
-                <viewController id="vQA-GA-85G" customClass="bookmarkViewController" customModule="Project_graduate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vQA-GA-85G" customClass="BookmarkViewController" customModule="Project_graduate" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ExF-bk-2wf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,8 +145,11 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" text="author" translatesAutoresizingMaskIntoConstraints="NO" id="VO8-Oo-BFE">
-                                                    <rect key="frame" x="160" y="78" width="228" height="72"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="author" translatesAutoresizingMaskIntoConstraints="NO" id="VO8-Oo-BFE">
+                                                    <rect key="frame" x="160" y="77" width="228" height="72"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="C7W-WZ-bvc"/>
+                                                    </constraints>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -179,16 +182,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="설정" id="Z0U-PW-MVv">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="7S2-bj-Tz1">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="yzX-t1-N9Q">
-                                                <rect key="frame" x="290" y="5" width="87" height="34.333333333333336"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
-                                                <connections>
-                                                    <action selector="tapSetting:" destination="vQA-GA-85G" eventType="touchUpInside" id="i4y-gL-J2V"/>
-                                                </connections>
-                                            </button>
+                                        <barButtonItem key="rightBarButtonItem" image="gearshape.fill" catalog="system" id="fcY-aZ-V0C">
+                                            <connections>
+                                                <action selector="tappedSetting:" destination="vQA-GA-85G" id="ir9-Z1-S8U"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -204,7 +201,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="aEV-wn-7Ea" id="NrP-1D-odi"/>
-                        <segue destination="5As-yV-T2g" kind="push" id="pv9-fd-m6y"/>
+                        <segue destination="5As-yV-T2g" kind="show" id="jPP-Oh-kWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uy-Jy-00p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -253,7 +250,13 @@
                             <constraint firstItem="k2N-aJ-5eT" firstAttribute="top" secondItem="9NZ-mM-gAa" secondAttribute="bottom" constant="10" id="xKi-Mg-8k4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1g8-Ng-LiW"/>
+                    <navigationItem key="navigationItem" id="1g8-Ng-LiW">
+                        <barButtonItem key="leftBarButtonItem" image="arrowshape.left" catalog="system" id="ont-2R-pbA">
+                            <connections>
+                                <action selector="returnToBookMark:" destination="5As-yV-T2g" id="g5C-cH-aqf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dbg-dO-6rI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

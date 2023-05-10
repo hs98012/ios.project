@@ -7,21 +7,21 @@
 
 import UIKit
 
-class bookmarkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BookmarkViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
     let bookmarkShared = BookMarkData.shared
     var books: [Book] = []
     
-    
-    @IBAction func tapSetting(_ sender: UIButton) {
+    @IBAction func tappedSetting(_ sender: UIBarButtonItem) {
         print("pushed")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let settingVC = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
-            self.navigationController?.pushViewController(settingVC, animated: true)
-        }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let settingVC = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController {
+                self.navigationController?.pushViewController(settingVC, animated: true)
+            }
     }
+
     
     
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class bookmarkViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         }
-        
+        self.navigationController?.navigationBar.isHidden = true
         print("bookmarkview: \(books.count)")
         
         tableView.delegate = self

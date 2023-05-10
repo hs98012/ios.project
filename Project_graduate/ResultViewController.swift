@@ -116,7 +116,7 @@ class ResultViewController: UIViewController {
             case .success(let value):
                 guard let json = value as? [String: Any] else { return }
                 if let resultData = json as? [String: Any] {
-//                    print(resultData)
+                    print(resultData)
                     if let parseData = resultData["result"] as? [String: Any] {
                         // imageUrl
                         if let imageUrl = parseData["imageUrl"] as? String {
@@ -173,13 +173,21 @@ class ResultViewController: UIViewController {
     @IBAction func bookmarkClicked(_ sender: UIButton) {
         let defaults = UserDefaults.standard
         if self.isMarked == false {
-            let bookmarkInfo = ["title": BookData.shared.kyoboInfo?["title"]!, "author": BookData.shared.kyoboInfo?["author"]!, "image": BookData.shared.imageUrl!, "key": randomKey] as [String : Any]
-            defaults.set(bookmarkInfo, forKey: randomKey)
-            self.isMarked = true
-            BookMarkData.shared.addBookmark(withKey: randomKey)
-            changeBookmark()
-            print("resultVC BookmarkClick")
-            print(defaults.object(forKey: randomKey) as? [String: Any])
+//            let bookmarkInfo = ["title": BookData.shared.kyoboInfo?["title"]!, "author": BookData.shared.kyoboInfo?["author"]!, "image": BookData.shared.imageUrl!, "key": randomKey] as [String : Any]
+            if let title = BookData.shared.kyoboInfo?["title"],
+               let author = BookData.shared.kyoboInfo?["author"],
+               let imageUrl = BookData.shared.imageUrl {
+                let bookmarkInfo = ["title": title, "author": author, "image": imageUrl, "key": randomKey] as [String : Any]
+                defaults.set(bookmarkInfo, forKey: randomKey)
+                self.isMarked = true
+                BookMarkData.shared.addBookmark(withKey: randomKey)
+                changeBookmark()
+                print("resultVC BookmarkClick")
+                print(defaults.object(forKey: randomKey) as? [String: Any])
+            } else {
+                print("One of the required values is nil.")
+            }
+            
         } else {
             defaults.removeObject(forKey: randomKey)
             self.isMarked = false
